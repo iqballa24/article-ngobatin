@@ -18,13 +18,13 @@
     
     <header>
         <div class="logo__container">
-            <h1><a href="http://localhost/ngobatin/admin/user" target="_blank"><img class="logo" src="<?=base_url('images/logo.png'); ?>" alt="logo"> Ngobatin<span>.</span></a></h1>
+            <h1><a href="http://localhost:8012/ngobatin1/admin/user" target="_blank"><img class="logo" src="<?=base_url('images/logo.png'); ?>" alt="logo"> Ngobatin<span>.</span></a></h1>
         </div>
         <nav>
             <ul class="nav__links">
                 <li><a href="http://127.0.0.1:8887/index.html">Home</a></li>
                 <li><a href="http://127.0.0.1:8887/about.html">About</a></li>
-                <li><a href="http://localhost/ngobatin/article/read">Article</a></li>
+                <li><a href="http://localhost:8012/ngobatin1/article/read">Article</a></li>
             </ul>
         </nav>
         <a class="button button__primary" href=""><i class="fas fa-hand-holding-usd text-white"></i></a>

@@ -34,7 +34,7 @@
         <div class="article__section container">
             <div class="row">
                 <?php foreach ($data_article as $data): ?>
-                <div class="col-md-4">
+                <div class="col-4">
                     <div class="card">
                         <img src="<?= base_url('images/upload_folder/'.$data['image']); ?>" class="card-img-top article__image" alt="<?= $data['image']; ?>">
                         <div class="card-body">

@@ -118,6 +118,7 @@ class M_article extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('tb_article a');
         $this->db->join('tb_category b', 'a.id_category = b.id');
+        $this->db->join('tb_user c', 'a.id_author = c.id');
         $this->db->where('id_article', $id);
 
 		$query = $this->db->get();

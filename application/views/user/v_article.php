@@ -22,9 +22,9 @@
         </div>
         <nav>
             <ul class="nav__links">
-                <li><a href="http://127.0.0.1:8887/index.html">Home</a></li>
-                <li><a href="http://127.0.0.1:8887/about.html">About</a></li>
-                <li><a href="http://localhost/ngobatin/article/read">Article</a></li>
+                <li><a href="http://127.0.0.1:8887/index.html">Beranda</a></li>
+                <li><a href="http://127.0.0.1:8887/about.html">Tentang</a></li>
+                <li><a href="http://localhost/ngobatin/article/read">Artikel</a></li>
             </ul>
         </nav>
         <a class="button button__primary" href=""><i class="fas fa-hand-holding-usd text-white"></i></a>

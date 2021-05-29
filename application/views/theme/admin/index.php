@@ -47,6 +47,9 @@
         <?php $this->load->view('theme/admin/header');; ?>
         <!-- /#header -->
 
+        <!-- Alert -->
+        <?php $this->load->view('theme/admin/alert');; ?>
+
         <!-- load main content -->
         <?php $this->load->view($theme_page); ?>
         <!-- /.content -->

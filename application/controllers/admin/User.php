@@ -9,7 +9,7 @@ class User extends CI_Controller
         parent::__construct();
 
         //memanggil model
-        $this->load->model(array('m_user'));
+        $this->load->model(array('M_user'));
     }
 
 
@@ -49,7 +49,7 @@ class User extends CI_Controller
         // sleep(2);
 
         //memanggil fungsi model datatables
-        $list = $this->m_user->get_datatables();
+        $list = $this->M_user->get_datatables();
         $data = array();
         $no = $this->input->post('start');
 
@@ -70,7 +70,7 @@ class User extends CI_Controller
 					<a href="' . site_url('admin/user/delete/' . $field['id']) . '" class="btn btn-danger btn-sm btnHapus" title="Hapus" data = "' . $field['id'] . '">
 						<i class="fas fa-trash-alt"></i>
 					</a>
-                    <a href="' . site_url('admin/user/reset/' . $field['id']) . '" class="btn btn-info btn-sm btnReset" title="Reset password" data = "' . $field['id'] . '">
+                    <a href="' . site_url('admin/user/defaultPassword/' . $field['id']) . '" class="btn btn-info btn-sm btnReset" title="Reset password" data = "' . $field['id'] . '">
 						<i class="fas fa-key"></i> Reset
 					</a>
                 </div>';
@@ -81,8 +81,8 @@ class User extends CI_Controller
         //mengirim data json
         $output = array(
             "draw" => $this->input->post('draw'),
-            "recordsTotal" => $this->m_user->count_all(),
-            "recordsFiltered" => $this->m_user->count_filtered(),
+            "recordsTotal" => $this->M_user->count_all(),
+            "recordsFiltered" => $this->M_user->count_filtered(),
             "data" => $data,
         );
 
@@ -142,7 +142,7 @@ class User extends CI_Controller
 
                 // memanggil function insert pada anggota_model.php
                 // function insert berfungsi menyimpan/create data ke table anggota di database
-                $data_user = $this->m_user->insert($input);
+                $data_user = $this->M_user->insert($input);
 
                 // mengembalikan halaman ke function read
                 $this->session->set_tempdata('message', 'Data berhasil ditambahkan !', 1);
@@ -194,7 +194,7 @@ class User extends CI_Controller
         $password_encrypt = md5($password);
 
         //check username & password sesuai dengan di database
-        $data_user = $this->m_user->read_single($email, $password_encrypt);
+        $data_user = $this->M_user->read_single($email, $password_encrypt);
 
         //jika cocok : dikembalikan ke fungsi login_submit (validasi sukses)
         if (!empty($data_user)) {
@@ -260,7 +260,7 @@ class User extends CI_Controller
 
                 // memanggil function insert pada anggota_model.php
                 // function insert berfungsi menyimpan/create data ke table anggota di database
-                $data_user = $this->m_user->insert($input);
+                $data_user = $this->M_user->insert($input);
 
                 // mengembalikan halaman ke function read
                 $this->session->set_tempdata('message', 'Data berhasil ditambahkan !', 1);
@@ -276,7 +276,7 @@ class User extends CI_Controller
 		$email = $this->input->post('email');
 
 		//check data di database
-		$data_user = $this->m_user->read_check($email);
+		$data_user = $this->M_user->read_check($email);
 
 		if (!empty($data_user)) {
             //membuat pesan error
@@ -376,6 +376,30 @@ class User extends CI_Controller
         return TRUE;
     }
 
+    public function defaultPassword()
+    {
+        //menangkap id data yg dipilih dari view
+        $id = $this->uri->segment(4);
+
+        // menangkap data input dari view
+        $password         = '12345';
+        $password_encrypt = md5($password);
+
+        // mengirim data ke model
+        $input = array(
+            // format : nama field/kolom table => data input dari view
+            'password'  => $password_encrypt
+        );
+
+        //memanggil function update pada kategori model
+        $this->M_user->update($input, $id);
+
+        //mengembalikan halaman ke function read
+        $this->session->set_tempdata('message', 'Password berhasil di Reset !', 1);
+        redirect('admin/user/read');
+      
+	}
+
     public function update()
     {
 
@@ -386,7 +410,7 @@ class User extends CI_Controller
         $id  = $this->uri->segment(4);
 
         //function read berfungsi mengambil 1 data dari table kategori sesuai id yg dipilih
-        $data_user_single = $this->m_user->read_single_id($id);
+        $data_user_single = $this->M_user->read_single_id($id);
 		$level = $this->session->userdata('level');
         $nama = $this->session->userdata('nama');
 
@@ -438,7 +462,7 @@ class User extends CI_Controller
                 );
 
                 //memanggil function update pada kategori model
-                $data_user = $this->m_user->update($input, $id);
+                $data_user = $this->M_user->update($input, $id);
 
                 //mengembalikan halaman ke function read
                 $this->session->set_tempdata('message', 'Data berhasil disimpan !', 1);
@@ -453,7 +477,7 @@ class User extends CI_Controller
         $id = $this->uri->segment(4);
 
         // memanggil petugas_model
-        $this->m_user->delete($id);
+        $this->M_user->delete($id);
 
         //mengembalikan halaman ke function read
         $this->session->set_tempdata('message', 'Data berhasil dihapus', 1);

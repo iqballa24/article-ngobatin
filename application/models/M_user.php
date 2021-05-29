@@ -94,6 +94,19 @@ class M_user extends CI_Model {
         return $query->result_array();
 	}
 
+	public function password($password)
+    {
+
+        //sql read
+        $this->db->select('*');
+        $this->db->from('tb_user');
+        $this->db->where('password', $password);
+        $query = $this->db->get();
+
+        //$query->result_array = mengirim data ke controller dalam bentuk semua data
+        return $query->row_array();
+    }
+
 	public function read_single($email, $password)
     {
 

@@ -304,16 +304,19 @@ class User extends CI_Controller
     {
 
         $this->reset_submit();
-        $NIP = $this->session->userdata('nama');
+        $nama = $this->session->userdata('nama');
+		$level = $this->session->userdata('level');
+
         //mengirim data ke view
         $output = array(
-            'theme_page'   => 'reset_password',
+            'theme_page'   => 'admin/v_reset_password',
             'judul'        => 'Reset password',
-            'data_petugas' => $NIP
+            'level'		 => $level,
+			'nama'		 => $nama
         );
 
         //memanggil file view
-        $this->load->view('theme/index', $output);
+        $this->load->view('theme/admin/index', $output);
     }
 
     private function reset_submit()
@@ -324,7 +327,7 @@ class User extends CI_Controller
             //aturan validasi input login
             $this->form_validation->set_rules('password_lama', 'Current Password', 'required|alpha_numeric|callback_reset_check');
             $this->form_validation->set_rules('password_baru', 'New Password', 'required|alpha_numeric|min_length[5]|differs[password_lama]');
-            $this->form_validation->set_rules('password_baru_ulangi', 'Confirm New Password', 'required|alpha_numeric|min_length[5]|matches[password_baru]');
+            $this->form_validation->set_rules('password_baru_ulangi', 'Confirm New Password', 'required|alpha_numeric|matches[password_baru]');
 
             if ($this->form_validation->run() == TRUE) {
 
@@ -335,7 +338,7 @@ class User extends CI_Controller
                 $Password = md5($newPassword);
 
                 //session user
-                $id = $this->session->userdata('NIP');
+                $id = $this->session->userdata('id');
 
                 //mengirim data ke model
                 $input = array(
@@ -344,11 +347,11 @@ class User extends CI_Controller
                 );
 
                 //memanggil function insert pada user model
-                $data = $this->petugas_model->update($input, $id);
+                $data = $this->M_user->update($input, $id);
 
                 //redirect ke provinsi (bisa dirubah ke controller & fungsi manapun)
-                $this->session->set_tempdata('message', 'Password berhasil diubah !', 3);
-                redirect('petugas/reset');
+                $this->session->set_tempdata('message', 'Password berhasil diubah !', 1);
+                redirect('admin/dashboard');
             }
         }
     }
@@ -362,7 +365,7 @@ class User extends CI_Controller
         $currentPassword = md5($currentPassword);
 
         //check username & password sesuai dengan di database
-        $data_user = $this->petugas_model->read($currentPassword);
+        $data_user = $this->M_user->password($currentPassword);
 
         //jika data user sesuai dengan di database
         if (empty($data_user)) {

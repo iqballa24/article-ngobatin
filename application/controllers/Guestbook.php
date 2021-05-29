@@ -11,7 +11,7 @@ class Guestbook extends CI_Controller {
 		// }
 
         // memanggil model
-        $this->load->model('m_guestbook');
+        $this->load->model('M_guestbook');
     }
 
 	public function index()
@@ -21,16 +21,29 @@ class Guestbook extends CI_Controller {
 
     public function read() 
     { 
+        $guestbook	  = $this->M_guestbook->read();
+
+		// mengirim data ke view
+		$output = array(
+			'guestbook' => $guestbook
+		);
+		
 		//memanggil file view
-		$this->load->view('user/v_guestbook');
+		$this->load->view('user/v_guestbook', $output);
 	}
 
     public function insert() {
 
 		$this->insert_submit();
+		$guestbook	  = $this->M_guestbook->read();
+
+		// mengirim data ke view
+		$output = array(
+			'guestbook' => $guestbook
+		);
 
 		// memanggil file view
-		$this->load->view('user/v_guestbook');
+		$this->load->view('user/v_guestbook', $output);
 	}
 
 	public function insert_submit() {
@@ -39,7 +52,7 @@ class Guestbook extends CI_Controller {
 
 			//aturan validasi input login
 			$this->form_validation->set_rules('nama', 'Nama', 'required');
-			$this->form_validation->set_rules('nim', 'Nim', 'required|numeric');
+			$this->form_validation->set_rules('nim', 'No telepon', 'required|numeric');
 			$this->form_validation->set_rules('email', 'email', 'required|valid_email');
 
 			if ($this->form_validation->run() == TRUE) {

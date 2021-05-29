@@ -105,6 +105,18 @@ header .button__primary {
 	background-color: #e92768;
 }
 
+.button-guestbook__list {
+	border: 1px solid #fd2c72;
+	color: #fd2c72;
+	width: 100%;
+	background-color: white;
+}
+
+.button-guestbook__list:hover{
+	background-color: #fd2c72;
+	color: white;
+}
+
 /* FORM GUESTBOOK */
 .guestbook-container {
 	margin-top: 10rem;
@@ -155,6 +167,10 @@ label {
 
 small {
 	font-size: 1.2rem;
+}
+
+.modal {
+	font-size: 1.6rem;
 }
 
 /* ARTICLE SECTION */
@@ -239,6 +255,23 @@ small {
     background-color: #212529;
     border: none;
     padding: .8rem;
+}
+
+/* DATATABLES CUSTOM*/
+
+.page-link {
+	color: #e92768;
+}
+
+.page-item.active .page-link {
+	background-color: #e92768;
+	border-color: #e92768;
+}
+
+.page-link:hover {
+	background-color: #ffa3c265;
+	border-color: #e92768;
+	color: #e92768;
 }
 
 /* MEDIUM DEVICE */

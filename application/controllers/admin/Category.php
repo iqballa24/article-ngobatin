@@ -59,12 +59,14 @@ class Category extends CI_Controller {
 			$row[] = $no;
 			$row[] = $field['category'];
 			$row[] = '
+				<div class="btn-group" role="group" aria-label="Basic outlined example">
 					<a href="'.site_url('admin/category/update/'.$field['id']). '" class="btn btn-warning btn-sm " title="Edit">
 						<i class="fas fa-edit"></i> 
 					</a>
 					<a href="'.site_url('admin/category/delete/'.$field['id']).'" class="btn btn-danger btn-sm btnHapus" title="Hapus" data = "'.$field['id'].'">
 						<i class="fas fa-trash-alt"></i> 
-					</a>';
+					</a>
+				</div>';
 
 			$data[] = $row;
 		}

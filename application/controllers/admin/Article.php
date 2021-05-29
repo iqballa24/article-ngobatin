@@ -86,12 +86,14 @@ class Article extends CI_Controller {
 			$row[] = $field['publishedAt'];
 			$row[] = $field['status'] == '1' ? '<div class ="btn btn-success btn-sm disabled">Verified</div>' : '<div class="btn btn-warning btn-sm disabled">Pending</div>';
 			$row[] = '
+				<div class="btn-group" role="group" aria-label="Basic outlined example">
 					<a href="'.site_url('admin/article/update/'.$field['id_article']). '" class="btn btn-warning btn-sm " title="Edit">
 						<i class="fas fa-edit"></i> 
 					</a>
 					<a href="'.site_url('admin/article/delete/'.$field['id_article']).'" class="btn btn-danger btn-sm btnHapus" title="Hapus" data = "'.$field['id'].'">
 						<i class="fas fa-trash-alt"></i> 
-					</a>';
+					</a>
+				</div>';
 
 			$data[] = $row;
 		}

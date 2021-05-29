@@ -31,24 +31,22 @@
                         <strong class="card-title">Data Artikel</strong>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped" id="table" cellspacing="0">
-                                <thead class="">
-                                    <tr>
-                                        <th> # </th>
-                                        <th> judul </th>
-                                        <th> gambar </th>
-                                        <th> kategori </th>
-                                        <th> tanggal </th>
-                                        <th> status </th>
-                                        <th> Action </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- content table -->
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="table table-striped table-responsive" id="table" cellspacing="0">
+                            <thead class="">
+                                <tr>
+                                    <th> # </th>
+                                    <th> judul </th>
+                                    <th> gambar </th>
+                                    <th> kategori </th>
+                                    <th> tanggal </th>
+                                    <th> status </th>
+                                    <th> Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- content table -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -79,4 +77,14 @@
 		});
 
 	});
+
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .then( editor => {
+                console.log( editor );
+        } )
+        .catch( error => {
+                console.error( error );
+        } );
+
 </script>

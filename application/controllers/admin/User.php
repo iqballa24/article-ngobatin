@@ -63,12 +63,17 @@ class User extends CI_Controller
             $row[] = $field['level'];
             $row[] = $field['status'] == '1' ? '<div class ="btn btn-success btn-sm disabled">Active</div>' : '<div class="btn btn-danger btn-sm disabled">Non Active</div>';
             $row[] = '
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
 					<a href="' . site_url('admin/user/update/' . $field['id']) . '" class="btn btn-warning btn-sm " title="Edit">
-						<i class="fas fa-pencil-alt"></i> Edit
+						<i class="fas fa-pencil-alt"></i>
 					</a>
 					<a href="' . site_url('admin/user/delete/' . $field['id']) . '" class="btn btn-danger btn-sm btnHapus" title="Hapus" data = "' . $field['id'] . '">
-						<i class="fas fa-trash-alt"></i> Hapus
-					</a>';
+						<i class="fas fa-trash-alt"></i>
+					</a>
+                    <a href="' . site_url('admin/user/reset/' . $field['id']) . '" class="btn btn-info btn-sm btnReset" title="Reset password" data = "' . $field['id'] . '">
+						<i class="fas fa-key"></i> Reset
+					</a>
+                </div>';
 
             $data[] = $row;
         }
@@ -410,7 +415,6 @@ class User extends CI_Controller
     			$this->form_validation->set_rules('nama', 'Nama', 'required');
     			$this->form_validation->set_rules('email', 'Email', 'required');
     			$this->form_validation->set_rules('level', 'Level', 'required');
-    			$this->form_validation->set_rules('password', 'Password', 'required');
     			$this->form_validation->set_rules('status', 'Status', 'required');
 
 
@@ -421,7 +425,6 @@ class User extends CI_Controller
                 $nama     = $this->input->post('nama');
                 $email    = $this->input->post('email');
                 $level    = $this->input->post('level');
-                $password = $this->input->post('password');
                 $status   = $this->input->post('status');
 
                 // mengirim data ke model
@@ -429,7 +432,6 @@ class User extends CI_Controller
                     // format : nama field/kolom table => data input dari view
                     'nama'      => $nama,
                     'level'     => $level,
-                    'password'  => $password,
                     'status'    => $status,
                     'email'     => $email,
                     'level'     => $level

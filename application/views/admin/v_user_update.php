@@ -37,10 +37,6 @@
                         <input type="text" class="form-control" name="email"  value="<?php echo $data_user_single['email']; ?>" required>
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" name="password"  value="<?php echo ($data_user_single['password']); ?>" required>
-                    </div>
-                    <div class="form-group">
                         <label>Level</label>
                         <select name="level" class="form-control" value="<?= set_value('level'); ?>" required>
                             <option value="<?php echo $data_user_single['level']; ?>" selected><?php echo $data_user_single['level']; ?></option>

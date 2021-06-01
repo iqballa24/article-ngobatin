@@ -70,7 +70,7 @@ class Guestbook extends CI_Controller {
 								'email' 	=> $email
 							);
                             
-				$data_guestbook = $this->m_guestbook->insert($input);
+				$data_guestbook = $this->M_guestbook->insert($input);
 
 				// mengembalikan halaman ke function read
 				$this->session->set_tempdata('message', 'Data berhasil ditambahkan !', 1);

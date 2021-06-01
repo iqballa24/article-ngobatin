@@ -39,8 +39,7 @@ header {
 }
 
 header .button__primary {
-	margin-left: 3rem;
-	background-color: #fd2c72;
+	margin-left: 3.6rem;
 }
 
 .logo__container {
@@ -93,6 +92,16 @@ header .button__primary {
 	transition: 0.3s ease-in-out;
 	font-size: 1.6rem;
 	margin: 0 0.3em 0.3em 0;
+}
+
+.button__primary {
+	background-color: #fd2c72;
+	color: white;
+}
+
+.button__primary:hover{
+	background-color: #f11961;
+	color: white;
 }
 
 .button-guestbook {
@@ -210,6 +219,90 @@ small {
 	text-align: center;
 }
 
+/* FORUM */
+.forum__section{
+	margin-top: 80px;
+}
+
+.forum__section .search__box {
+	top: 2rem;
+	z-index: 9999;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 67.5rem;
+	border-radius: .8rem;
+	border:1px solid #dcdcdc;
+	background-color: white;
+	text-align: center;
+}
+
+.forum__section .search__box:hover {
+	box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+
+.forum__section .search__box:focus-within {
+	box-shadow: 1px 1px 8px 1px #dcdcdc;
+	outline:none;
+}
+
+.forum__section .search__box .searchbar {
+	border:none;
+	padding: 10px;
+	width: 80%;
+	max-width:600px;
+	font-size:16px;
+	outline: none;
+}
+
+.forum__section .search__box .icon__search {
+	left: 0px;
+	position: relative;
+	font-size: 1.6rem;
+}
+
+.forum__section .card-title{
+	font-size: 20px;
+}
+
+.forum__section .container-cardforum {
+	margin: 20px;
+}
+
+.forum__section .cardfooter {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.forum__section .cardfooter .items{
+	margin-right: 30px;
+}
+
+/* DISCUSSION */
+.discussion__section {
+	margin-top: 80px;
+}
+
+.discussion__section .list-items {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.discussion__section .list-items .items{
+	margin-right: 30px;
+}
+
+.discussion__section .comment__section {
+	margin-top: 40px;
+}
+
+.discussion__section .comment__section .cardfooter {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.discussion__section .comment__section .cardfooter .items{
+	margin-right: 30px;
+}
 /* FOOTER */
 .footer {
 	border-top: 0.1rem solid #e0e0e0;

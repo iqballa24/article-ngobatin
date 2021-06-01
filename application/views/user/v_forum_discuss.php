@@ -32,23 +32,57 @@
     </header>
 
     <main>
-        <div class="article__section container">
+        <div class="discussion__section container">
             <div class="row">
-                <?php foreach ($data_article as $data): ?>
-                <div class="col-4">
-                    <div class="card">
-                        <img src="<?= base_url('images/upload_folder/'.$data['image']); ?>" class="card-img-top article__image" alt="<?= $data['image']; ?>">
-                        <div class="card-body">
-                            <h1 class="card-title article__title"><?= $data['title']; ?></h1>
-                            <p class="card-text article__text"><?= $data['description']; ?></p>
-                            <p class="card-text article__text"><?= date('d F Y', strtotime($data['publishedAt'])); ?></p>
-                            <div class="text-end">
-                                <a href="<?= site_url('article/detail/'.$data['id_article']); ?>" class="article__detail">Selengkapnya</a>
+                <div class="col-md-9">
+                <?php foreach ($data_forum_single as $data) : ?>
+                    <h1><?= $data['title']; ?></h1>
+                    <p class="mt-3"><?= $data['text']; ?></p>
+                    <div class="list-items mt-5">
+                        <p class="items"><i class="fas fa-user" dt></i> <?= $data['nama']; ?></p>
+                        <p class="items"><i class="fas fa-filter"></i> <?= $data['category']; ?></p>
+                        <p class="items"><i class="fas fa-clock"></i> <?= date('l jS \of F Y h:i:s A"', strtotime($data['time'])); ?></p>
+                        <p class="items"><i class="fas fa-comment"></i> <?php foreach ($total_comment as $total) : ?>
+                                    <?= $total['total']; ?>
+                                <?php endforeach ?></p>
+                    </div>
+                    <hr>
+                <?php endforeach ?>
+                <div class="comment__section">
+                    <form method="post" action="<?= site_url('admin/invoice/insert/'); ?>" enctype="multipart/form-data">
+                        <div class="form-group col-12">
+                            <p>Commentar :</p>
+                            <textarea id="editor" type="text" class="form-control" name="content" value="" rows="5" placeholder="Type Something"><?= set_value('content'); ?></textarea>
+                            <?= form_error('content', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                        <div class="text-end">
+                            <a href="#" class="button button__primary mt-5 text-end">Kirim</a>
+                        </div>
+                    </form>
+                    <hr class="mt-5 mb-5">
+                    <div class="row">
+                        <div class="row container-cardforum">
+                        <?php foreach ($data_forum  as $data) : ?>
+                            <div class="card col-12 pb-3 pt-3">
+                                <div class="card-body">
+                                    <div class="cardfooter">
+                                        <p class="items"><i class="fas fa-user" dt></i> <?= $data['user']; ?></p>
+                                        <p class="items"><i class="fas fa-clock"></i> <?= date('l jS \of F Y h:i:s A"', strtotime($data['time'])); ?></p>
+                                    </div>
+                                    <p class="card-text"><?= $data['comment']; ?></p>
+                                </div>
                             </div>
+                        <?php endforeach ?>
                         </div>
                     </div>
                 </div>
-                <?php endforeach; ?>
+                </div>
+                <div class="col-md-3">
+                    <div class="ads-space">
+                        <p>space avalaible</p>
+                        <p>250 x 250</p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -86,7 +120,14 @@
         </div>
     </footer>
 
-    <script src="<?= base_url('assets/frontend/vendor/jquery/dist/jquery.min.js'); ?>"></script>
-    <script src="<?= base_url('assets/frontend/vendor/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
 </body>
 </html>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script type="text/javascript">
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

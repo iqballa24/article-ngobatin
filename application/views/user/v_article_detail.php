@@ -25,6 +25,7 @@
                 <li><a href="http://127.0.0.1:8887/index.html">Beranda</a></li>
                 <li><a href="http://127.0.0.1:8887/about.html">Tentang</a></li>
                 <li><a href="http://localhost:8012/ngobatin1/article/read">Artikel</a></li>
+                <li><a href="http://localhost/ngobatin/forum/read">Forum</a></li>
             </ul>
         </nav>
         <a class="button button__primary" href=""><i class="fas fa-hand-holding-usd text-white"></i></a>

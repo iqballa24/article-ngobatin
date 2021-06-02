@@ -6,12 +6,12 @@ class Forum extends CI_Controller {
     public function __construct() {
 		parent::__construct();
 
-		// if (empty($this->session->userdata('email'))) {
-		// 	redirect('admin/user/login');
-		// }
+		if (empty($this->session->userdata('nama'))) {
+			redirect('guestbook/read');
+		}
 
         // memanggil model
-        $this->load->model(array('M_forum'));
+        $this->load->model(array('M_forum','M_category'));
     }
 
 	public function index()
@@ -122,105 +122,55 @@ class Forum extends CI_Controller {
 
 		$this->insert_submit();
 
-        $data_category = $this->m_category->read();
-		$level = $this->session->userdata('level');
+        $data_category = $this->M_category->read();
 		$NAMA = $this->session->userdata('nama');
-		$ID = $this->session->userdata('id');
-
 
 		$output = array(
-            'theme_page' 	=> 'admin/v_article_insert',
-            'judul' 	 	=> 'Data Artikel',
 			'data_category' => $data_category,
-			'level'			=> $level,
 			'nama' 			=> $NAMA,
-			'id' 			=> $ID,
         );
 
 
 		// memanggil file view
-		$this->load->view('theme/admin/index', $output);
+		$this->load->view('user/v_forum_insert', $output);
 	}
 
 	public function insert_submit() {
 
-		if ($this->input->post('submit') == 'Simpan') {
+		if ($this->input->post('submit') == 'Kirim') {
 
 			//aturan validasi input login
-			$this->form_validation->set_rules('author', 'Author', 'required');
-			$this->form_validation->set_rules('title', 'Judul', 'required');
+			$this->form_validation->set_rules('question', 'Pertanyaan', 'required');
+			$this->form_validation->set_rules('detail_question', 'Uraian Pertanyaan', 'required');
 			$this->form_validation->set_rules('id_kategori', 'Kategori', 'required');
-			$this->form_validation->set_rules('description', 'Deskripsi', 'required');
-			$this->form_validation->set_rules('content', 'Isi Konten', 'required');
-
-			//setting library upload
-            $config = array (
-                'upload_path'    => './images/upload_folder/',
-                'allowed_types'  => 'gif|jpg|png',
-                'max_size'       => 5000
-            );
-
-            $this->load->library('upload', $config);
 
 			if ($this->form_validation->run() == TRUE) {
 
+				$nama = $this->session->userdata('nama');
+
+
 				// menangkap data input dari view
-				$author	  	 = $this->input->post('author');
-				$title	  	 = $this->input->post('title');
-				$id_category = $this->input->post('id_kategori');
-				$desc	  	 = $this->input->post('description');
-				$content  	 = $this->input->post('content');
-				$status  	 = '2';
+				$Category	  = $this->input->post('id_kategori');
+				$Nama	 	  = $nama;
+				$Question	  = $this->input->post('question');
+				$Uraian		  = $this->input->post('detail_question');
+				$isPositif	  = '2';
+		
+				// mengirim data ke model
+				$input = array(
+								'kategori' 		=> $Category,
+								'title'			=> $Question,
+								'text'			=> $Uraian,
+								'user'			=> $Nama,
+								'isPositif'		=> $isPositif,
+							);
+                            
+				$data_category = $this->M_forum->insert($input);
 
-				//jika gagal upload
-                if (!$this->upload->do_upload('userfile')) {
-        
-                    //mengambil daftar provinsi dari table provinsi
-                    $data_category = $this->m_category->read();
-                    // $NIP = $this->session->userdata('nama');
-        
-                    //respon alasan kenapa gagal upload
-                    $response = $this->upload->display_errors();
-
-					$output = array(
-						'theme_page' => 'admin/v_article_insert',
-						'judul' 	 => 'Data Artikel',
-                        'response'   => $response,
-
-						'data_category' => $data_category
-					);
-			
-					// memanggil file view
-					$this->load->view('theme/admin/index', $output);
-        
-                //jika berhasil upload
-                } else {
-                    $this->upload->do_upload('userfile');
-                    $upload_data = $this->upload->data('file_name');
-        
-                    //mengirim data ke model
-                    $input = array(
-                        //format : nama field/kolom table => data input dari view
-                        'id_author'   => $author,
-                        'title' 	  => $title,
-                        'id_category' => $id_category,
-                        'description' => $desc,
-                        'content'     => $content,
-                        'status'      => $status,
-                        'image'       => $upload_data,
-                    );
-    
-                    //memanggil function insert pada kota model
-                    //function insert berfungsi menyimpan/create data ke table buku di database
-                    $data_artikel = $this->m_article->insert($input);
-        
-                    //mengembalikan halaman ke function read
-                    $this->session->set_tempdata('message', 'Data berhasil ditambahkan', 1);
-					Redirect('admin/article/read');
-				}
-
+				// mengembalikan halaman ke function read
+				$this->session->set_tempdata('message', 'Data berhasil ditambahkan !', 1);
+				redirect('forum/read');
 			}
-
 		}
 
 	}

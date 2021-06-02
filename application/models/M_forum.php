@@ -87,9 +87,8 @@ class M_forum extends CI_Model {
 	public function read() {
 
 		//sql read
-		$this->db->select('*, SUM(forum) as total');
+		$this->db->select('*, SUM(forum) as total, a.user as nama');
 		$this->db->from('tb_forum a');
-        $this->db->join('tb_user b', 'a.user = b.id');
         $this->db->join('tb_category c', 'a.kategori = c.id');
         $this->db->join('tb_comment d', 'a.id_forum = d.forum', 'left');
         $this->db->group_by('id_forum');
@@ -104,9 +103,8 @@ class M_forum extends CI_Model {
 	public function read_single($id) {
 
 		//sql read
-		$this->db->select('*');
+		$this->db->select('*, a.user as nama');
 		$this->db->from('tb_forum a');
-        $this->db->join('tb_user b', 'a.user = b.id');
         $this->db->join('tb_category c', 'a.kategori = c.id');
 		$this->db->where('id_forum', $id);
 
@@ -122,7 +120,6 @@ class M_forum extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('tb_forum a');
 		$this->db->join('tb_comment d', 'a.id_forum = d.forum','left');
-        $this->db->join('tb_user b', 'a.user = b.id');
         $this->db->join('tb_category c', 'a.kategori = c.id');
         $this->db->where('id_forum', $id);
 
@@ -183,7 +180,7 @@ class M_forum extends CI_Model {
 	public function insert($input)
 	{
 		// $input = data yang dikirim dari controller
-		return $this->db->insert('tb_article', $input);
+		return $this->db->insert('tb_forum', $input);
 	}
 
 	public function update($input, $id)

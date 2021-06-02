@@ -37,7 +37,7 @@
                 <div class="col-md-3">
                     <h1>Forum ngobatin</h1>
                     <p class="mt-3">Fitur forum ini bertujuan untuk mempermudah kalian untuk saling bertanya dan berbagi ilmu. Kamu dapat bertanya dan menjawab hal teknis terkait kesehatan atau obat.</p>
-                    <a href="" class="button button__primary mt-3 mb-5">Tambah Diskusi</a>
+                    <a href="<?= site_url('forum/insert/'); ?>" class="button button__primary mt-3 mb-5">Tambah Diskusi</a>
                 </div>
                 <div class="col-md-9">
                     <div class="row">

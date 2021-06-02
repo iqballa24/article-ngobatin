@@ -6,9 +6,9 @@ class Article extends CI_Controller {
     public function __construct() {
 		parent::__construct();
 
-		// if (empty($this->session->userdata('NIP'))) {
-		// 	redirect('petugas/login');
-		// }
+		if (empty($this->session->userdata('nama'))) {
+			redirect('guestbook/read');
+		}
 
         // memanggil model
         $this->load->model('m_article');

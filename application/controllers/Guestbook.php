@@ -61,6 +61,9 @@ class Guestbook extends CI_Controller {
 				$nama	  = $this->input->post('nama');
 				$nim	  = $this->input->post('nim');
 				$email	  = $this->input->post('email');
+
+				//buat session user 
+				$this->session->set_userdata('nama', $nama);
 		
 				// mengirim data ke model
 				$input = array(

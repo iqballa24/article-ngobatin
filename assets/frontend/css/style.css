@@ -277,6 +277,11 @@ small {
 	margin-right: 30px;
 }
 
+/* FORUM INSERT */
+.addforum__section {
+	margin-top: 80px;
+}
+
 /* DISCUSSION */
 .discussion__section {
 	margin-top: 80px;
@@ -303,6 +308,7 @@ small {
 .discussion__section .comment__section .cardfooter .items{
 	margin-right: 30px;
 }
+
 /* FOOTER */
 .footer {
 	border-top: 0.1rem solid #e0e0e0;
@@ -383,4 +389,21 @@ small {
 	.container-ads {
 		display: none;
 	}
+
+	.forum__section .cardfooter {
+		flex-wrap: wrap;
+	}
+
+	.discussion__section .comment__section .cardfooter {
+		flex-wrap: wrap;
+	}
+
+	.ads-space {
+		display: none;
+	}
+
+	.discussion__section .list-items {
+		flex-wrap: wrap;
+	}
+	
 }

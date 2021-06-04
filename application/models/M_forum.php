@@ -6,13 +6,13 @@ class M_forum extends CI_Model {
 	var $table = array('tb_article');
 
 	//field yang ditampilkan
-	var $column_order = array(null,'title','image','id_category','publishedAt','status');
+	var $column_order = array(null,'title','text','user','kategori','time', 'isPositif');
 
 	//field yang diizin untuk pencarian 
-	var $column_search = array('id', 'id_author','title','image','id_category','publishedAt','category');
+	var $column_search = array('id_forum','title','text','user','kategori','time', 'isPositif');
 
 	//field pertama yang diurutkan
-	var $order = array('publishedAt' => 'asc');
+	var $order = array('id_forum' => 'desc');
 
 	public function __construct()
 	{
@@ -22,9 +22,9 @@ class M_forum extends CI_Model {
 	private function _get_datatables_query()
 	{
 
-		$this->db->select('*');
-		$this->db->from('tb_article a');
-        $this->db->join('tb_category b', 'a.id_category = b.id');
+		$this->db->select('*, a.user as nama');
+		$this->db->from('tb_forum a');
+        $this->db->join('tb_category c', 'a.kategori = c.id');
 
 		$i = 0;
 
@@ -114,6 +114,20 @@ class M_forum extends CI_Model {
         return $query->result_array();
 	}
 
+	public function read_single_insert($id) {
+
+		// sql read
+		$this->db->select('*, a.user as nama');
+		$this->db->from('tb_forum a');
+        $this->db->join('tb_category c', 'a.kategori = c.id');
+		$this->db->where('id_forum', $id);
+
+		$query = $this->db->get();
+
+		// query -> row_array = mengirim data ke controller dalam bentuk 1 data
+        return $query->row_array();
+	}
+
 	public function discus($id) {
 
 		//sql read
@@ -183,21 +197,27 @@ class M_forum extends CI_Model {
 		return $this->db->insert('tb_forum', $input);
 	}
 
+	public function discussion($input)
+	{
+		// $input = data yang dikirim dari controller
+		return $this->db->insert('tb_comment', $input);
+	}
+
 	public function update($input, $id)
     {
         //$id = id data yang dikirim dari controller (sebagai filter data yang diubah)
         //filter data sesuai id yang dikirim dari controller
-        $this->db->where('id_article', $id);
+        $this->db->where('id_forum', $id);
 
         //$input = data yang dikirim dari controller
-        return $this->db->update('tb_article', $input);
+        return $this->db->update('tb_forum', $input);
     }
 
 	public function delete($id)
     {
         //$id = id data yang dikirim dari controller (sebagai filter data yang dihapus)
-        $this->db->where('id_article', $id);
-        return $this->db->delete('tb_article');
+        $this->db->where('id_forum', $id);
+        return $this->db->delete('tb_forum');
 
     }
 }

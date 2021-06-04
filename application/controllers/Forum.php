@@ -25,51 +25,68 @@ class Forum extends CI_Controller {
 		$getTotalAllComment = $this->M_forum->getTotalAllComment();
 
         $output = array(
+            'theme_page' 	=> 'user/v_forum',
             'judul' 	 	=> 'Data Artikel',
 			'data_forum' 	=> $data_forum,
 			'totalComment'	=> $getTotalAllComment
 	    );
 
 		//memanggil file view
-		$this->load->view('user/v_forum', $output);
+		$this->load->view('theme/user/index', $output);
 	}
 
 	public function discussion()
 	{
+		$this->discussion_insert();
+
 		$id  		   		= $this->uri->segment(3);
         $data_forum_single  = $this->M_forum->read_single($id);
 		$data_forum    		= $this->M_forum->discus($id);
 		$total_comment 		= $this->M_forum->getTotalComment($id);
 
         $output = array(
+            'theme_page' 		=> 'user/v_forum_discuss',
             'judul' 			=> 'Data Artikel',
 			'total_comment' 	=> $total_comment,
 			'data_forum_single' => $data_forum_single,
-			'data_forum' 		=> $data_forum
+			'data_forum' 		=> $data_forum,
+			'id'				=> $id
 	    );
 
 		//memanggil file view
-		$this->load->view('user/v_forum_discuss', $output);
+		$this->load->view('theme/user/index', $output);
 	}
 
-    public function author() 
-    { 
+	public function discussion_insert() {
 
-		$nama  		 = $this->session->userdata('nama');
-		$id  		 = $this->session->userdata('id');
-		$level 	 	 = $this->session->userdata('level');
-        $data_author = $this->m_article->author($id);
+		if ($this->input->post('submit') == 'Kirim') {
 
-        $output = array(
-            'theme_page'  => 'admin/v_article_author',
-            'judul' 	  => 'Data Artikel',
-			'data_author' => $data_author,
-			'nama'		  => $nama,
-			'level'		  => $level
-	    );
+			//aturan validasi input login
+			$this->form_validation->set_rules('content', 'Content');
 
-		//memanggil file view
-		$this->load->view('theme/admin/index', $output);
+			if ($this->form_validation->run() == FALSE) {
+
+				// menangkap data input dari view
+				$nama 	 = $this->session->userdata('nama');
+				$content = $this->input->post('content');
+				$id      = $this->input->post('id');
+
+		
+				// mengirim data ke model
+				$input = array(
+								'comment' 	=> $content,
+								'user'		=> $nama,
+								'forum'		=> $id
+							);
+                            
+				$data_discuss = $this->M_forum->discussion($input);
+
+				// mengembalikan halaman ke function read
+				$this->session->set_tempdata('message', 'Data berhasil ditambahkan !', 1);
+				redirect('forum/discussion/'. $id);
+			}
+		}
+
 	}
 
 	//fungsi menampilkan data dalam bentuk json
@@ -126,13 +143,14 @@ class Forum extends CI_Controller {
 		$NAMA = $this->session->userdata('nama');
 
 		$output = array(
+            'theme_page' => 'user/v_forum_insert',
 			'data_category' => $data_category,
 			'nama' 			=> $NAMA,
         );
 
 
 		// memanggil file view
-		$this->load->view('user/v_forum_insert', $output);
+		$this->load->view('theme/user/index', $output);
 	}
 
 	public function insert_submit() {
@@ -147,7 +165,6 @@ class Forum extends CI_Controller {
 			if ($this->form_validation->run() == TRUE) {
 
 				$nama = $this->session->userdata('nama');
-
 
 				// menangkap data input dari view
 				$Category	  = $this->input->post('id_kategori');

@@ -32,6 +32,9 @@
                     <li class="<?php if ($i == 'guestbook') { echo "active";} ?> <?= $level == 'author' ? 'd-none' : '' ?>">
                         <a href="<?php echo site_url('admin/guestbook/read'); ?>"> <i class="menu-icon ti-book"></i>Buku tamu</a>
                     </li>
+                    <li class="<?php if ($i == 'forum') { echo "active";} ?> <?= $level == 'author' ? 'd-none' : '' ?>">
+                        <a href="<?php echo site_url('admin/forum/read'); ?>"> <i class="menu-icon ti-help-alt"></i>Forum</a>
+                    </li>
                     <li class="menu-title <?= $level == 'author' ? 'd-none' : '' ?>">User management</li><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown <?php if ($i == 'user') { echo "active";} ?> <?= $level == 'author' ? 'd-none' : '' ?>">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti-user"></i>User</a>

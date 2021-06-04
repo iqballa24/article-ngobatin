@@ -25,11 +25,12 @@ class Article extends CI_Controller {
 
 		$output = array(
             'judul' 	   => 'Data Artikel',
+            'theme_page' => 'user/v_article',
 			'data_article' => $data_article
         );
 
 		//memanggil file view
-		$this->load->view('user/v_article', $output);
+		$this->load->view('theme/user/index', $output);
 	}
 
 	public function detail()
@@ -40,12 +41,13 @@ class Article extends CI_Controller {
         
         // mengirim data ke view
         $output = array(
-            'judul'         => 'Buku yang dipinjam',
-            'detail'   => $detail,
+            'theme_page' => 'user/v_article_detail',
+            'judul'      => 'Buku yang dipinjam',
+            'detail'     => $detail,
 		);
 
         // memanggil file view
-        $this->load->view('user/v_article_detail', $output);
+        $this->load->view('theme/user/index', $output);
     }
 
     public function insert() {

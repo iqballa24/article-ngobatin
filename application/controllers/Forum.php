@@ -9,7 +9,6 @@ class Forum extends CI_Controller {
 		if (empty($this->session->userdata('nama'))) {
 			redirect('guestbook/read');
 		}
-
         // memanggil model
         $this->load->model(array('M_forum','M_category'));
     }
@@ -21,14 +20,26 @@ class Forum extends CI_Controller {
 
     public function read() 
     { 
-        $data_forum   		= $this->M_forum->read();
-		$getTotalAllComment = $this->M_forum->getTotalAllComment();
+		// ambil data keyword
+		if($this->input->post('submit')){
+
+			if($this->input->post('keyword') == null){
+				$data_forum   	 = $this->M_forum->read();
+			}else{
+				$data 		= $this->input->post('keyword');
+				$data_forum = $this->M_forum->search($data);
+			}
+		}else {
+			$data_forum   	 = $this->M_forum->read();
+		}
+
+		// $getTotalAllComment = $this->M_forum->getTotalAllComment();
 
         $output = array(
             'theme_page' 	=> 'user/v_forum',
             'judul' 	 	=> 'Data Artikel',
 			'data_forum' 	=> $data_forum,
-			'totalComment'	=> $getTotalAllComment
+			// 'totalComment'	=> $getTotalAllComment
 	    );
 
 		//memanggil file view
@@ -62,14 +73,14 @@ class Forum extends CI_Controller {
 		if ($this->input->post('submit') == 'Kirim') {
 
 			//aturan validasi input login
-			$this->form_validation->set_rules('content', 'Content');
+			$this->form_validation->set_rules('content', 'Content', 'required');
+			$id      = $this->input->post('id');
 
-			if ($this->form_validation->run() == FALSE) {
+			if ($this->form_validation->run() == TRUE) {
 
 				// menangkap data input dari view
 				$nama 	 = $this->session->userdata('nama');
 				$content = $this->input->post('content');
-				$id      = $this->input->post('id');
 
 		
 				// mengirim data ke model
@@ -82,7 +93,10 @@ class Forum extends CI_Controller {
 				$data_discuss = $this->M_forum->discussion($input);
 
 				// mengembalikan halaman ke function read
-				$this->session->set_tempdata('message', 'Data berhasil ditambahkan !', 1);
+				$this->session->set_tempdata('message', 'Komentar berhasil di tambahkan', 1);
+				redirect('forum/discussion/'. $id);
+			}else {
+				$this->session->set_tempdata('error', 'Komentar Kosong !', 1);
 				redirect('forum/discussion/'. $id);
 			}
 		}
@@ -185,7 +199,7 @@ class Forum extends CI_Controller {
 				$data_category = $this->M_forum->insert($input);
 
 				// mengembalikan halaman ke function read
-				$this->session->set_tempdata('message', 'Data berhasil ditambahkan !', 1);
+				$this->session->set_tempdata('message', 'Forum akan tampil setelah disetujui admin', 1);
 				redirect('forum/read');
 			}
 		}

@@ -10,5 +10,6 @@
     <script defer src="<?= base_url('assets/frontend/vendor/@fortawesome/fontawesome-free/js/solid.js'); ?>"></script>
     <script defer src="<?= base_url('assets/frontend/vendor/@fortawesome/fontawesome-free/js/regular.js'); ?>"></script>
     <script defer src="<?= base_url('assets/frontend/vendor/@fortawesome/fontawesome-free/js/fontawesome.js'); ?>"></script>
+    <script src="<?= base_url('assets/backend/vendor/sweetalert/sweetalert2.all.min.js'); ?>"></script>
     <title>Ngobatin</title>
 </head>

@@ -87,13 +87,25 @@ class M_forum extends CI_Model {
 	public function read() {
 
 		//sql read
-		$this->db->select('*, SUM(forum) as total, a.user as nama');
+		$this->db->select('*, COUNT(forum) as total, a.user as nama');
 		$this->db->from('tb_forum a');
         $this->db->join('tb_category c', 'a.kategori = c.id');
         $this->db->join('tb_comment d', 'a.id_forum = d.forum', 'left');
         $this->db->group_by('id_forum');
         $this->db->where('isPositif', '1');
 
+		$query = $this->db->get();
+
+		// $query -> result_array = mengirim data ke controller dalam bentuk semua data
+        return $query->result_array();
+	}
+
+	public function search($query) {
+		$this->db->select('*, SUM(forum) as total, a.user as nama');
+		$this->db->from('tb_forum a');
+        $this->db->join('tb_category b', 'a.kategori = b.id');
+        $this->db->join('tb_comment d', 'a.id_forum = d.forum', 'left');
+		$this->db->like('title', $query);
 		$query = $this->db->get();
 
 		// $query -> result_array = mengirim data ke controller dalam bentuk semua data
@@ -144,7 +156,7 @@ class M_forum extends CI_Model {
 	}
 
 	public function getTotalComment($id) {
-		$this->db->select('COUNT(forum) as total');
+		$this->db->select('count(forum) as total');
         $this->db->from('tb_comment');
 		$this->db->where('forum', $id);
         $query = $this->db->get();
@@ -153,7 +165,7 @@ class M_forum extends CI_Model {
 	}
 
 	public function getTotalAllComment() {
-		$this->db->select('title, SUM(forum) as total');
+		$this->db->select('title, COUNT(forum) as total');
 		$this->db->from('tb_forum a');
 		$this->db->join('tb_comment b', 'a.id_forum = b.forum','left');
         $this->db->group_by('id_forum');

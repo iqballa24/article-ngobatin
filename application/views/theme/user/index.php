@@ -10,6 +10,9 @@
     </header>
 
     <main>
+        <!-- alert -->
+        <?php $this->load->view('theme/admin/alert');; ?>
+
         <!-- Load content -->
         <?php $this->load->view($theme_page); ?>
     </main>

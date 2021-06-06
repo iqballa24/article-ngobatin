@@ -9,10 +9,12 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-12 search-section">
-                    <div class="search__box">
-                        <input id="search" class="searchbar" type="text" title="Search" placeholder="Cari pertanyaan...">
-                        <i class="fas fa-search icon__search"></i>
-                    </div>
+                    <form action="<?= base_url('forum'); ?>" method="post">
+                        <div class="search__box">
+                            <input id="search" class="searchbar" type="text" name="keyword" title="Search" placeholder="Cari pertanyaan..." autocomplete="off" autofocus>
+                            <input type="submit" name="submit" hidden><i class="fas fa-search icon__search"></i>
+                        </div>
+                    </form>
                     <hr class="mt-5 mb-5">
                 </div>
                 <div class="col-12">

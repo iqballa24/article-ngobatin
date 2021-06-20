@@ -22,48 +22,58 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/backend/css/cs-skin-elastic.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/backend/css/style.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/frontend/css/style.css'); ?>">
+
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 </head>
-<body class="bg-light">
-
+<body class="">
     <div class="sufee-login d-flex align-content-center flex-wrap">
-        <div class="container">
-            <div class="login-content">
-                <div class="login-logo">
-                    <a href="">
-                        <h1 class="text-dark"><img class="align-content" src="<?= base_url('images/logo.png'); ?>" alt=""> Ngobatin</h1>
-                    </a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="box"></div>
                 </div>
-                <div class="login-form">
-                    <form class="user" method="post" action="<?php echo site_url('admin/user/register/'); ?>">
-                        <div class="form-group">
-                            <label>Nama</label>
-                            <input type="nama" name="nama" class="form-control" placeholder="Nama" value="<?= set_value('nama'); ?>">
-                            <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+                <div class="col-md-7">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <a href="">
+                                <h1 class="text-dark"><img class="align-content" src="<?= base_url('images/logo.png'); ?>" alt=""> Ngobatin</h1>
+                            </a>
                         </div>
-                        <div class="form-group">
-                            <label>Email address</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email" value="<?= set_value('email'); ?>">
-                            <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <div class="login-form">
+                            <form class="user" method="post" action="<?php echo site_url('admin/user/register/'); ?>">
+                                <div class="form-group">
+                                    <label>Nama</label>
+                                    <input type="nama" name="nama" class="form-control" placeholder="Nama" value="<?= set_value('nama'); ?>">
+                                    <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email address</label>
+                                    <input type="email" name="email" class="form-control" placeholder="Email" value="<?= set_value('email'); ?>">
+                                    <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input name="password" type="password" class="form-control" placeholder="Password" value="<?= set_value('password'); ?>">
+                                    <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
+                                </div>
+                                <div class="form-group">
+                                    <label>Konfirmasi Password</label>
+                                    <input name="confpassword" type="password" class="form-control" placeholder="Konfirmasi Password" value="<?= set_value('confpassword'); ?>">
+                                    <?= form_error('confpassword', '<small class="text-danger pl-3">', '</small>'); ?>
+                                </div>
+                                <div class="text-right mt-5">
+                                    <input type="submit" name="submit" value="Register" class="button button__primary">
+                                </div>
+                                <div class="register-link m-t-15 text-center">
+                                    <p>Already have account ? <a href="<?= site_url('admin/user/login'); ?>"> Sign in</a></p>
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input name="password" type="password" class="form-control" placeholder="Password" value="<?= set_value('password'); ?>">
-                            <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
-                        </div>
-                        <div class="form-group">
-                            <label>Konfirmasi Password</label>
-                            <input name="confpassword" type="password" class="form-control" placeholder="Konfirmasi Password" value="<?= set_value('confpassword'); ?>">
-                            <?= form_error('confpassword', '<small class="text-danger pl-3">', '</small>'); ?>
-                        </div>
-                        <input type="submit" name="submit" value="Register" class="btn btn-success btn-user btn-block">
-                        <div class="register-link m-t-15 text-center">
-                            <p>Already have account ? <a href="<?= site_url('admin/user/login'); ?>"> Sign in</a></p>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

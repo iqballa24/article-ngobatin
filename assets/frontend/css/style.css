@@ -28,6 +28,23 @@ p {
 	font-size: 1.6rem;
 }
 
+/* FORM */
+.form-control {
+	padding: 2rem 3rem;
+}
+
+.sufee-login .container-fluid{
+	padding-left: 0px !important;
+}
+
+.box {
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url('../../../images/bg-login.jpg');
+}
+
 /* NAVBAR */
 header {
 	display: -webkit-box;

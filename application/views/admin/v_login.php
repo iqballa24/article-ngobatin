@@ -22,47 +22,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/backend/css/cs-skin-elastic.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/backend/css/style.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/frontend/css/style.css'); ?>">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 </head>
-<body class="bg-light">
+<body class="">
 
     <div class="sufee-login d-flex align-content-center flex-wrap">
-        <div class="container">
-            <div class="login-content">
-                <div class="login-logo">
-                    <a href="">
-                        <h1 class="text-dark"><img class="align-content" src="<?= base_url('images/logo.png'); ?>" alt=""> Ngobatin</h1>
-                    </a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5 bg-red">
+                    <div class="box">
+                    </div>
                 </div>
-                <div class="login-form">
-                    
-                    <?= form_error('email', '<div class="alert alert-warning" role="alert"><small class="text-danger pl-3">', '</small></div>'); ?>
-                    <form class="user" method="post" action="<?php echo site_url('admin/user/login/'); ?>">
-                        <div class="form-group">
-                            <label>Email address</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email" required>
+                <div class="col-md-7" style="margin-top: 50px;">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <a href="#">
+                                <h1 class="text-dark"><img class="align-content" src="<?= base_url('images/logo.png'); ?>" alt=""> Ngobatin</h1>
+                            </a>
                         </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password" required>
+                        <div class="login-form p-5 ml-auto mr-auto col-lg-10 col-md-12">      
+                            <?= form_error('email', '<div class="alert alert-warning" role="alert"><small class="text-danger pl-3">', '</small></div>'); ?>
+                            <form class="user" method="post" action="<?php echo site_url('admin/user/login/'); ?>">
+                                <div class="form-group">
+                                    <label>Email address</label>
+                                    <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                                </div>
+                                <div class="text-right">
+                                    <input type="submit" name="submit" value="Login" class="button button__primary mt-4">
+                                </div>
+                                <div class="register-link m-t-15 text-center">
+                                    <p>Don't have account ? <a href="<?= site_url('admin/user/register'); ?>"> Sign Up Here</a></p>
+                                </div>
+                            </form>
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Remember Me
-                            </label>
-                            <label class="pull-right">
-                                <a href="#">Forgotten Password?</a>
-                            </label>
-
-                        </div>
-                        <input type="submit" name="submit" value="Login" class="btn btn-success btn-user btn-block">
-                        <div class="register-link m-t-15 text-center">
-                            <p>Don't have account ? <a href="<?= site_url('admin/user/register'); ?>"> Sign Up Here</a></p>
-                        </div>
-                    </form>
+                    </div>s
                 </div>
             </div>
         </div>

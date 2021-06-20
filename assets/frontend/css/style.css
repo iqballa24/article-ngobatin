@@ -66,6 +66,7 @@ header .navbar {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+	padding-top: 15px;
 	-webkit-box-pack: justify;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
@@ -104,6 +105,10 @@ header .nav__links {
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
+}
+
+header .nav__links .active{
+	color: #fd2c72;
 }
 
 @media only screen and (max-width: 48em) {

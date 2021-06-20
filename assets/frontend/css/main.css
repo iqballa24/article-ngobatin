@@ -120,6 +120,7 @@ header .navbar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding-top: 1.5rem;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -158,6 +159,10 @@ header .nav__links {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+header .nav__links .active {
+  color: #fd2c72;
 }
 
 @media only screen and (max-width: 48em) {
@@ -390,10 +395,6 @@ header .hamburger .bar {
   border-color: #e0e0e0;
 }
 
-.hidden-box.col-md-4 {
-  display: none;
-}
-
 .about__section {
   margin-top: 7rem;
   padding: 7.5rem 2rem 2.5rem;
@@ -460,7 +461,7 @@ header .hamburger .bar {
 .team__section .box-img img {
   position: relative;
   width: 100%;
-  height: 30rem;
+  height: 34rem;
   -o-object-fit: cover;
      object-fit: cover;
 }

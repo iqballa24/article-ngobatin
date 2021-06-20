@@ -34,7 +34,7 @@
                     </div>
                     <div class="box-img">
                         <div class="img">
-                            <img src="<?= base_url('./images/team2.jpg'); ?>" alt="">
+                            <img src="<?= base_url('./images/hendra.jpeg'); ?>" alt="">
                         </div>
                         <div class="text">
                             <h3>Hendra P. Aditama</h3>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="box-img">
                         <div class="img">
-                            <img src="<?= base_url('./images/team5.jpg'); ?>" alt="">
+                            <img src="<?= base_url('./images/alfin.jpeg'); ?>" alt="">
                         </div>
                         <div class="text">
                             <h3>M Ramzy Alfinrizq</h3>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="box-img">
                         <div class="img">
-                            <img src="<?= base_url('./images/team6.jpg'); ?>" alt="">
+                            <img src="<?= base_url('./images/iqbal.png'); ?>" alt="">
                         </div>
                         <div class="text">
                             <h3>Tengku Iqbal Nugraha</h3>
@@ -60,7 +60,7 @@
             </div>
         </div>
     </main>
-
-    <script type="module" src="<?= base_url('assets/frontend/js/about.js'); ?>"></script>
+<!-- 
+    <script type="module" src="<?= base_url('assets/frontend/js/about.js'); ?>"></script> -->
 </body>
 </html>

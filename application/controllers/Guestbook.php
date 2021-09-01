@@ -76,8 +76,7 @@ class Guestbook extends CI_Controller {
 				$data_guestbook = $this->M_guestbook->insert($input);
 
 				// mengembalikan halaman ke function read
-				$this->session->set_tempdata('message', 'Data berhasil ditambahkan !', 1);
-				redirect('http://127.0.0.1:8887/');
+				redirect('home/read');
 			}
 
 		}

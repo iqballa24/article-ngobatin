@@ -21,10 +21,8 @@ class Home extends CI_Controller {
 
     public function read() 
     { 
-        // $data_article = $this->m_article->read();
 
 		$output = array(
-            'judul' 	   => 'Data Artikel',
             'theme_page' => 'user/v_home'
         );
 

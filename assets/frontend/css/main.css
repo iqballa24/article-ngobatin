@@ -110,7 +110,7 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 1rem 10%;
+  padding: 2rem 10%;
   font-size: 1.4rem;
   -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
           box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
@@ -120,7 +120,6 @@ header .navbar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-top: 1.5rem;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
